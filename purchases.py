@@ -1,4 +1,4 @@
-customer_names = []
+customer_names= []
 item_costs = []
 
 num_of_purchases = int(input("Number of purchases: "))
@@ -13,12 +13,30 @@ while purchase_number <= num_of_purchases:
     item_costs.append(item_cost)
     purchase_number+=1
 
+
+
 def add_tax(item_costs, sales_tax):
-    for index, item_cost in enumerate(item_costs):
-        item_costs[index] += item_cost * sales_tax
-       
-    return item_costs
+    updated_costs = []
+    for item_cost in item_costs:
+        updated_cost = item_cost +  item_cost * sales_tax
+        updated_costs.append(updated_cost)
+    return updated_costs
 
 new_costs = add_tax(item_costs, sales_tax)
 
-print(new_costs)
+customer_info = {}
+
+purchase_number = 1
+
+while purchase_number<=num_of_purchases:
+    customer = customer_names[purchase_number-1]
+    cost_plus_tax = new_costs[purchase_number-1]
+    if customer in customer_info:
+        customer_info[customer] += cost_plus_tax
+    else:
+        customer_info[customer] = cost_plus_tax
+
+    purchase_number+=1
+
+print(customer_info)
+

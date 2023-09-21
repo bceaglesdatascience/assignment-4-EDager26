@@ -14,9 +14,10 @@ while purchase_number <= num_of_purchases:
     purchase_number+=1
 
 def add_tax(item_costs, sales_tax):
-    for item_cost in item_costs:
-        item_cost+=item_cost * sales_tax
-    return item_costs 
+    for index, item_cost in enumerate(item_costs):
+        item_costs[index] += item_cost * sales_tax
+       
+    return item_costs
 
 new_costs = add_tax(item_costs, sales_tax)
 
